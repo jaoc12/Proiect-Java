@@ -1,6 +1,7 @@
 package repositories;
 
 import model.Candidat;
+import model.Examen;
 import model.Profesor;
 
 import java.io.FileWriter;
@@ -63,6 +64,24 @@ public class PrintCSV {
             for(Profesor p : lista){
                 writer.append(p.getNume() + "," + p.getPrenume() + "," + p.getPassword() + ","
                         + p.getEmail() + "," + p.getFacultate());
+                writer.append("\n");
+            }
+
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void printExamene(List<Examen> lista){
+        try {
+            FileWriter writer = new FileWriter("date/Examene.csv");
+            writer.append("Pondere1,Pondere2,Facultate");
+            writer.append("\n");
+
+            for(Examen e : lista){
+                writer.append(e.getPondere1() + "," + e.getPondere2() + "," + e.getNumeFacultate());
                 writer.append("\n");
             }
 

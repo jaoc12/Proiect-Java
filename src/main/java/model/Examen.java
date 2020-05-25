@@ -4,10 +4,20 @@ public class Examen {
 
     private double pondere1;
     private double pondere2;
+    private String numeFacultate;
 
-    public Examen(double pondere1, double pondere2) {
+    public Examen(double pondere1, double pondere2, String numeFacultate) {
         this.pondere1 = pondere1;
         this.pondere2 = pondere2;
+        this.numeFacultate = numeFacultate;
+    }
+
+    public String getNumeFacultate() {
+        return numeFacultate;
+    }
+
+    public void setNumeFacultate(String numeFacultate) {
+        this.numeFacultate = numeFacultate;
     }
 
     public double getPondere1() {

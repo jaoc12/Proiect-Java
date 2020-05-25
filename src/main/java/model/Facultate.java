@@ -14,7 +14,7 @@ public class Facultate {
     public Facultate(String nume, int locuriBuget, int locuriTaxa, double pondere1, double pondere2) {
         FileCandidatRepository file = new FileCandidatRepository();
         this.nume = nume;
-        this.examen = new Examen(pondere1, pondere2);
+        this.examen = new Examen(pondere1, pondere2, "Info");
         this.locuriBuget = locuriBuget;
         this.locuriTaxa = locuriTaxa;
         this.candidati = file.loadCandidati(this.nume);
