@@ -1,31 +1,29 @@
 package repositories;
 
 import managers.DBConnectionManager;
-import model.Candidat;
-import model.User;
+import model.Profesor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
-public class DBCandidatRepository implements CandidatRepository{
+public class DBProfesorRepository implements ProfesorRepository{
 
     private final PrintCSV printer = new PrintCSV();
 
     @Override
-    public List<Candidat> loadCandidati(String numeFacultate) {
-        printer.printAudit("loadCandidati");
-        String sql = "select * from candidati where facultate = ?";
+    public SortedSet<Profesor> loadProfesori(String numeFacultate) {
+        printer.printAudit("loadProfesori");
+        String sql = "select * from profesori where facultate = ?";
 
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
                 PreparedStatement statement = con.prepareStatement(sql)
         ) {
-            List<Candidat> lista = new ArrayList<>();
+            SortedSet<Profesor> lista = new TreeSet<>();
             statement.setString(1, numeFacultate);
 
             ResultSet set = statement.executeQuery();
@@ -35,12 +33,9 @@ public class DBCandidatRepository implements CandidatRepository{
                 String prenume = set.getString("prenume");
                 String password = set.getString("password");
                 String email = set.getString("email");
-                double nota1 = set.getDouble("nota1");
-                double nota2 = set.getDouble("nota2");
-                double medie = set.getDouble("medie");
 
-                lista.add(new Candidat(nume, prenume, password, email,
-                        numeFacultate, nota1, nota2, medie));
+                lista.add(new Profesor(nume, prenume, password, email,
+                        numeFacultate));
             }
 
             return lista;
@@ -51,22 +46,19 @@ public class DBCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public void addCandidat(Candidat candidat) {
-        printer.printAudit("addCandidat");
-        String sql = "INSERT INTO candidati VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    public void addProfesor(Profesor profesor) {
+        printer.printAudit("addProfesor");
+        String sql = "INSERT INTO profesori VALUES(?, ?, ?, ?, ?)";
 
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
                 PreparedStatement statement = con.prepareStatement(sql)
         ) {
-            statement.setString(1, candidat.getNume());
-            statement.setString(2, candidat.getPrenume());
-            statement.setString(3, candidat.getPassword());
-            statement.setString(4, candidat.getEmail());
-            statement.setString(5, candidat.getFacultate());
-            statement.setDouble(6, candidat.getNota1());
-            statement.setDouble(7, candidat.getNota2());
-            statement.setDouble(8, candidat.getMedie());
+            statement.setString(1, profesor.getNume());
+            statement.setString(2, profesor.getPrenume());
+            statement.setString(3, profesor.getPassword());
+            statement.setString(4, profesor.getEmail());
+            statement.setString(5, profesor.getFacultate());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -75,9 +67,9 @@ public class DBCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public void removeCandidat(String nume, String numeFacultate) {
-        printer.printAudit("removeCandidat");
-        String sql = "DELETE FROM candidati Where nume = ? and facultate = ?";
+    public void removeProfesor(String nume, String numeFacultate) {
+        printer.printAudit("removeProfesor");
+        String sql = "DELETE FROM profesori Where nume = ? and facultate = ?";
 
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
@@ -93,18 +85,17 @@ public class DBCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public void changeCandidat(String nume, String numeFacultate, double nota1, double nota2) {
-        printer.printAudit("changeCandidat");
-        String sql = "UPDATE candidati Set nota1 = ?, nota2 = ? WHERE nume = ? and facultate = ?";
+    public void changeProfesor(String nume, String numeFacultate, String password) {
+        printer.printAudit("changeProfesor");
+        String sql = "UPDATE profesori Set password = ? WHERE nume = ? and facultate = ?";
 
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
                 PreparedStatement statement = con.prepareStatement(sql)
         ) {
-            statement.setDouble(1, nota1);
-            statement.setDouble(2, nota2);
-            statement.setString(3, nume);
-            statement.setString(4, numeFacultate);
+            statement.setString(1, password);
+            statement.setString(2, nume);
+            statement.setString(3, numeFacultate);
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -113,9 +104,9 @@ public class DBCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public boolean isCandidat(String email, String password, String numeFacultate) {
-        printer.printAudit("isCandidat");
-        String sql = "SELECT * FROM candidati where email = ? and facultate = ? and password = ?";
+    public boolean isProfesor(String email, String password, String numeFacultate) {
+        printer.printAudit("isProfesor");
+        String sql = "SELECT * FROM profesori where email = ? and facultate = ? and password = ?";
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
                 PreparedStatement statement = con.prepareStatement(sql);

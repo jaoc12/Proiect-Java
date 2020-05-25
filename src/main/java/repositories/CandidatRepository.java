@@ -1,10 +1,8 @@
 package repositories;
 
 import model.Candidat;
-import model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CandidatRepository {
 
@@ -12,6 +10,7 @@ public interface CandidatRepository {
     void addCandidat(Candidat candidat);
     void removeCandidat(String nume, String numeFacultate);
     void changeCandidat(String nume, String numeFacultate, double nota1, double nota2);
+    boolean isCandidat(String email, String password, String numeFacultate);
 
     static CandidatRepository build(Type type) {
         switch (type) {

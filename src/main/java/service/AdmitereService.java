@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ServiceAdmitere {
+public class AdmitereService {
 
     public void listaFinala(Facultate facultate) {
         List<Candidat> candidati = facultate.getCandidati();
