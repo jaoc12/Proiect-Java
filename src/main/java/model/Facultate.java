@@ -1,5 +1,7 @@
 package model;
 
+import repositories.CandidatRepository;
+import repositories.ExamenRepository;
 import repositories.FileCandidatRepository;
 import java.util.List;
 
@@ -11,13 +13,14 @@ public class Facultate {
     private int locuriTaxa;
     private List<Candidat> candidati;
 
-    public Facultate(String nume, int locuriBuget, int locuriTaxa, double pondere1, double pondere2) {
-        FileCandidatRepository file = new FileCandidatRepository();
+    public Facultate(String nume, int locuriBuget, int locuriTaxa) {
+        CandidatRepository candidatRepository = CandidatRepository.build(CandidatRepository.Type.FILE);
+        ExamenRepository examenRepository = ExamenRepository.build(ExamenRepository.Type.FILE);
         this.nume = nume;
-        this.examen = new Examen(pondere1, pondere2, "Info");
+        this.examen = examenRepository.findExamen(this.nume);
         this.locuriBuget = locuriBuget;
         this.locuriTaxa = locuriTaxa;
-        this.candidati = file.loadCandidati(this.nume);
+        this.candidati = candidatRepository.loadCandidati(this.nume);
     }
 
     public double getMedie(Candidat candidat){
@@ -54,5 +57,11 @@ public class Facultate {
 
     public void setCandidati(List<Candidat> candidati) {
         this.candidati = candidati;
+    }
+
+    public void setExamen(double pondere1, double pondere2){
+        ExamenRepository examenRepository = ExamenRepository.build(ExamenRepository.Type.FILE);
+        examenRepository.changeExamen(this.nume, pondere1, pondere2);
+        this.examen = examenRepository.findExamen(this.nume);
     }
 }
