@@ -3,17 +3,15 @@ package service;
 import model.Candidat;
 import repositories.CandidatRepository;
 
-import java.util.Optional;
-
 public class LoginCandidatService {
     private final CandidatRepository candidatRepository;
 
     public LoginCandidatService() {
-        candidatRepository = CandidatRepository.build(CandidatRepository.Type.DB);
+        candidatRepository = CandidatRepository.build(CandidatRepository.Type.FILE);
     }
 
-    public boolean login(String email, String password, String numeFacultate) {
-        return candidatRepository.isCandidat(email, password, numeFacultate);
+    public Candidat login(String email, String password, String numeFacultate) {
+        return candidatRepository.findCandidat(email, password, numeFacultate);
     }
 
     public void register(Candidat candidat) {

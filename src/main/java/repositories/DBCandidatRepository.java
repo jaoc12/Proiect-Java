@@ -2,7 +2,6 @@ package repositories;
 
 import managers.DBConnectionManager;
 import model.Candidat;
-import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class DBCandidatRepository implements CandidatRepository{
 
@@ -113,7 +111,7 @@ public class DBCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public boolean isCandidat(String email, String password, String numeFacultate) {
+    public Candidat findCandidat(String email, String password, String numeFacultate) {
         printer.printAudit("isCandidat");
         String sql = "SELECT * FROM candidati where email = ? and facultate = ? and password = ?";
         try (
@@ -127,11 +125,17 @@ public class DBCandidatRepository implements CandidatRepository{
             ResultSet set = statement.executeQuery();
 
             if (set.next()) {
-                return true;
+                String nume = set.getString("nume");
+                String prenume = set.getString("prenume");
+                double nota1 = set.getDouble("nota1");
+                double nota2 = set.getDouble("nota2");
+                double medie = set.getDouble("medie");
+                return new Candidat(nume, prenume, password, email, numeFacultate,
+                        nota1, nota2, medie);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }

@@ -1,10 +1,7 @@
 package repositories;
 
-import model.Candidat;
-import model.Facultate;
 import model.Profesor;
 
-import java.awt.print.PrinterAbortException;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -103,14 +100,14 @@ public class FileProfesorRepository implements ProfesorRepository{
     }
 
     @Override
-    public boolean isProfesor(String email, String password, String numeFacultate) {
+    public Profesor findProfesor(String email, String password, String numeFacultate) {
         printer.printAudit("isProfesor");
         SortedSet<Profesor> listaProfesori = loadProfesori(numeFacultate);
         for(Profesor p : listaProfesori){
             if (p.getEmail().equals(email) && p.getPassword().equals(password)){
-                return true;
+                return p;
             }
         }
-        return false;
+        return null;
     }
 }

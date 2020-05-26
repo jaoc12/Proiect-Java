@@ -97,14 +97,14 @@ public class FileCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public boolean isCandidat(String email, String password, String numeFacultate) {
+    public Candidat findCandidat(String email, String password, String numeFacultate) {
         printer.printAudit("isCandidat");
         List<Candidat> listaCandidati = loadCandidati(numeFacultate);
         for(Candidat c : listaCandidati){
             if(c.getEmail().equals(email) && c.getPassword().equals(password)){
-                return true;
+                return c;
             }
         }
-        return false;
+        return null;
     }
 }

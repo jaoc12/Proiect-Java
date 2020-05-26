@@ -2,7 +2,6 @@ package repositories;
 
 import model.Profesor;
 
-import java.util.List;
 import java.util.SortedSet;
 
 public interface ProfesorRepository {
@@ -11,7 +10,7 @@ public interface ProfesorRepository {
     void addProfesor(Profesor profesor);
     void removeProfesor(String nume, String numeFacultate);
     void changeProfesor(String nume, String numeFacultate, String password);
-    boolean isProfesor(String email, String password, String numeFacultate);
+    Profesor findProfesor(String email, String password, String numeFacultate);
 
     static ProfesorRepository build(Type type) {
         switch (type) {

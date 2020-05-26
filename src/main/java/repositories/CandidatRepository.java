@@ -10,7 +10,7 @@ public interface CandidatRepository {
     void addCandidat(Candidat candidat);
     void removeCandidat(String nume, String numeFacultate);
     void changeCandidat(String nume, String numeFacultate, double nota1, double nota2);
-    boolean isCandidat(String email, String password, String numeFacultate);
+    Candidat findCandidat(String email, String password, String numeFacultate);
 
     static CandidatRepository build(Type type) {
         switch (type) {

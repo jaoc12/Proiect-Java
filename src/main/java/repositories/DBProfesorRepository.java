@@ -104,7 +104,7 @@ public class DBProfesorRepository implements ProfesorRepository{
     }
 
     @Override
-    public boolean isProfesor(String email, String password, String numeFacultate) {
+    public Profesor findProfesor(String email, String password, String numeFacultate) {
         printer.printAudit("isProfesor");
         String sql = "SELECT * FROM profesori where email = ? and facultate = ? and password = ?";
         try (
@@ -118,11 +118,13 @@ public class DBProfesorRepository implements ProfesorRepository{
             ResultSet set = statement.executeQuery();
 
             if (set.next()) {
-                return true;
+                String nume = set.getString("nume");
+                String prenume = set.getString("prenume");
+                return new Profesor(nume, prenume, password, email, numeFacultate);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }

@@ -1,3 +1,4 @@
 Nume,Prenume,Password,Email,Facultate,Nota1,Nota2,Medie
 Relu,Relu,parola,email2,Info,7.2,6.2,5.2
 Gelu,Gelu,parola,email3,Info,7.4,3.6,5.2
+Delu,Delu,parola,email3,Info,0.0,0.0,0.0
