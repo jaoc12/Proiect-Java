@@ -47,6 +47,8 @@ public class LoginGUI extends JFrame{
                 LoginCandidatService loginCandidatService = new LoginCandidatService();
                 if(loginCandidatService.login(textField1.getText(), passwordField1.getText(), textField2.getText()) != null){
                     JOptionPane.showMessageDialog(null, "Logare cu succes");
+                    ListaAdmitereGUI listaAdmitereGUI = new ListaAdmitereGUI(textField2.getText());
+                    dispose();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Email/parola gresita");

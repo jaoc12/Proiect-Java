@@ -1,13 +1,7 @@
 package main;
 
+import gui.ListaAdmitereGUI;
 import gui.LoginGUI;
-import model.Candidat;
-import model.Examen;
-import model.Facultate;
-import model.Profesor;
-import repositories.*;
-import service.LoginCandidatService;
-import service.LoginProfesorCandidat;
 
 public class Main {
 
