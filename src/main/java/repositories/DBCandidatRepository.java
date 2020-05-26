@@ -91,9 +91,9 @@ public class DBCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public void changeCandidat(String nume, String numeFacultate, double nota1, double nota2) {
+    public void changeCandidat(String email, String numeFacultate, double nota1, double nota2) {
         printer.printAudit("changeCandidat");
-        String sql = "UPDATE candidati Set nota1 = ?, nota2 = ? WHERE nume = ? and facultate = ?";
+        String sql = "UPDATE candidati Set nota1 = ?, nota2 = ? WHERE email = ? and facultate = ?";
 
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
@@ -101,7 +101,7 @@ public class DBCandidatRepository implements CandidatRepository{
         ) {
             statement.setDouble(1, nota1);
             statement.setDouble(2, nota2);
-            statement.setString(3, nume);
+            statement.setString(3, email);
             statement.setString(4, numeFacultate);
 
             statement.executeUpdate();

@@ -3,10 +3,10 @@ package service;
 import model.Profesor;
 import repositories.ProfesorRepository;
 
-public class LoginProfesorCandidat {
+public class ProfesorService {
     private final ProfesorRepository profesorRepository;
 
-    public LoginProfesorCandidat() {
+    public ProfesorService() {
         profesorRepository = ProfesorRepository.build(ProfesorRepository.Type.FILE);
     }
 

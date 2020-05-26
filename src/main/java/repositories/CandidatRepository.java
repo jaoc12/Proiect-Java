@@ -9,7 +9,7 @@ public interface CandidatRepository {
     List<Candidat> loadCandidati(String numeFacultate);
     void addCandidat(Candidat candidat);
     void removeCandidat(String nume, String numeFacultate);
-    void changeCandidat(String nume, String numeFacultate, double nota1, double nota2);
+    void changeCandidat(String email, String numeFacultate, double nota1, double nota2);
     Candidat findCandidat(String email, String password, String numeFacultate);
 
     static CandidatRepository build(Type type) {

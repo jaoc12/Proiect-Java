@@ -1,11 +1,11 @@
 package main;
 
-import gui.ListaAdmitereGUI;
 import gui.LoginGUI;
+import gui.ProfesorGUI;
 
 public class Main {
 
     public static void main(String[] args) {
-        LoginGUI loginGUI = new LoginGUI();
+        new LoginGUI();
     }
 }

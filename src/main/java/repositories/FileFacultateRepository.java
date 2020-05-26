@@ -1,7 +1,5 @@
 package repositories;
 
-import model.Candidat;
-import model.Examen;
 import model.Facultate;
 
 import java.io.FileNotFoundException;
@@ -77,7 +75,7 @@ public class FileFacultateRepository implements FacultateRepository{
     }
 
     @Override
-    public void changeFacultate(String numeFacultate, int locuriBuget, int locuriTaxa, double pondere1, double pondere2) {
+    public void changeFacultate(String numeFacultate, int locuriBuget, int locuriTaxa) {
         printer.printAudit("changeFacultate");
         List<Facultate> listaFacultate = loadFacultati();
         int i = 0;
@@ -85,7 +83,6 @@ public class FileFacultateRepository implements FacultateRepository{
             if (facultate.getNume().equals(numeFacultate)){
                 facultate.setLocuriBuget(locuriBuget);
                 facultate.setLocuriTaxa(locuriTaxa);
-                facultate.setExamen(pondere1, pondere2);
                 break;
             }
             i++;

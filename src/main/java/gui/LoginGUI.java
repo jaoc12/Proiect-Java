@@ -1,21 +1,22 @@
 package gui;
 
-import service.LoginCandidatService;
+import service.CandidatService;
+import service.ProfesorService;
 
 import javax.swing.*;
 
 public class LoginGUI extends JFrame{
     private JButton button1;
-    private JTextField textField1;
-    private JLabel email;
-    private JPasswordField passwordField1;
-    private JLabel parola;
+    private JTextField email;
+    private JLabel jLabel1;
+    private JPasswordField password;
+    private JLabel jLabel2;
     private JCheckBox profesorCheckBox;
     private JCheckBox candidatCheckBox;
     private JPanel panelEmail;
     private JPanel panelParola;
     private JPanel panel;
-    private JTextField textField2;
+    private JTextField facultate;
     private JPanel panel3;
     private JButton inregistrareCandidatButton;
 
@@ -29,7 +30,7 @@ public class LoginGUI extends JFrame{
     }
 
     private void addCandidat() {
-        InregistrareGUI inregistrareGUI = new InregistrareGUI();
+        new InregistrareGUI();
         dispose();
     }
 
@@ -44,14 +45,27 @@ public class LoginGUI extends JFrame{
         }
         else{
             if(candidatCheckBox.isSelected()){
-                LoginCandidatService loginCandidatService = new LoginCandidatService();
-                if(loginCandidatService.login(textField1.getText(), passwordField1.getText(), textField2.getText()) != null){
+                CandidatService candidatService = new CandidatService();
+                if(candidatService.login(email.getText(),
+                        password.getText(), facultate.getText()) != null){
                     JOptionPane.showMessageDialog(null, "Logare cu succes");
-                    ListaAdmitereGUI listaAdmitereGUI = new ListaAdmitereGUI(textField2.getText());
+                    new ListaAdmitereGUI(facultate.getText());
                     dispose();
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Email/parola gresita");
+                    JOptionPane.showMessageDialog(null, "Email/Parola gresita");
+                }
+            }
+            else{
+                ProfesorService profesorService = new ProfesorService();
+                if(profesorService.login(email.getText(),
+                        password.getText(), facultate.getText()) != null){
+                    JOptionPane.showMessageDialog(null, "Logare cu succes");
+                    new ProfesorGUI(facultate.getText());
+                    dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Email/Parola gresita");
                 }
             }
         }

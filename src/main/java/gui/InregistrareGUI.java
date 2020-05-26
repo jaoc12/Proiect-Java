@@ -24,7 +24,7 @@ public class InregistrareGUI extends JFrame{
     private JButton inregistrareButton;
     private JButton inapoiButton;
 
-    public InregistrareGUI() throws HeadlessException {
+    public InregistrareGUI(){
         add(panel);
         setSize(300, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,12 +38,12 @@ public class InregistrareGUI extends JFrame{
         inregistrareService.addCandidat(textField1.getText(), textField2.getText(), passwordField1.getText(),
                 textField3.getText(), textField4.getText());
         JOptionPane.showMessageDialog(null, "Candidat intregistrat");
-        LoginGUI loginGUI = new LoginGUI();
+        new LoginGUI();
         dispose();
     }
 
     private void inapoi(){
-        LoginGUI loginGUI = new LoginGUI();
+        new LoginGUI();
         dispose();
     }
 }

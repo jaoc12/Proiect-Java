@@ -76,12 +76,12 @@ public class FileCandidatRepository implements CandidatRepository{
     }
 
     @Override
-    public void changeCandidat(String nume, String numeFacultate, double nota1, double nota2) {
+    public void changeCandidat(String email, String numeFacultate, double nota1, double nota2) {
         printer.printAudit("changeCandidat");
         List<Candidat> listaCandidati = loadCandidati(numeFacultate);
         int i = 0;
         for(Candidat c : listaCandidati){
-            if (c.getNume().equals(nume)){
+            if (c.getEmail().equals(email)){
                 c.setNota1(nota1);
                 c.setNota2(nota2);
                 break;

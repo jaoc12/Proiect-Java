@@ -32,11 +32,10 @@ public class ListaAdmitereGUI extends JFrame{
 
     private DefaultListModel getLista(String numeFacultate, String listaCautata){
         DefaultListModel lista = new DefaultListModel();
-        AdmitereService admitereService = new AdmitereService();
-        List<Candidat> listaCompleta = admitereService.getListaSpecifica(numeFacultate, listaCautata);
+        List<Candidat> listaCompleta = new AdmitereService().getListaSpecifica(numeFacultate, listaCautata);
         for(Candidat candidat : listaCompleta){
-            lista.addElement(new String(candidat.getNume() + " " + candidat.getPrenume() +
-                    ": " + candidat.getMedie()));
+            lista.addElement(candidat.getNume() + " " + candidat.getPrenume() +
+                    ": " + candidat.getMedie());
         }
         return lista;
     }

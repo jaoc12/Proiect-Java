@@ -116,7 +116,9 @@ public class PrintCSV {
             FileWriter fileWriter = new FileWriter("date/Audit.csv", true);
             PrintWriter out = new PrintWriter(fileWriter);
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            out.println(nume_actiune+","+formatter.format(new Date()));
+            long threadId = Thread.currentThread().getId();
+            out.println(nume_actiune + "," + formatter.format(new Date()) +
+                    "," + threadId);
             out.close();
         } catch (IOException e) {
             e.printStackTrace();

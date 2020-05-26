@@ -1,7 +1,6 @@
 package repositories;
 
 import managers.DBConnectionManager;
-import model.Examen;
 import model.Facultate;
 
 import java.sql.Connection;
@@ -80,7 +79,7 @@ public class DBFacultateRepository implements FacultateRepository{
     }
 
     @Override
-    public void changeFacultate(String numeFacultate, int locuriBuget, int locuriTaxa, double pondere1, double pondere2) {
+    public void changeFacultate(String numeFacultate, int locuriBuget, int locuriTaxa) {
         printer.printAudit("changeFacultate");
         String sql = "UPDATE facultati Set locuribuget = ?, locuritaxa = ? WHERE nume = ?";
 
@@ -92,9 +91,6 @@ public class DBFacultateRepository implements FacultateRepository{
             statement.setInt(2, locuriTaxa);
             statement.setString(3, numeFacultate);
             statement.executeUpdate();
-
-            Facultate facultate = new Facultate(numeFacultate, locuriBuget, locuriTaxa);
-            facultate.setExamen(pondere1, pondere2);
         } catch (SQLException e) {
             e.printStackTrace();
         }

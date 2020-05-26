@@ -13,7 +13,7 @@ public class AdmitereService {
         return FacultateRepository.build(FacultateRepository.Type.FILE).findFacultate(numeFacultate);
     }
 
-    private List<Candidat> getLista(String numeFacultate){
+    public List<Candidat> getLista(String numeFacultate){
         Facultate facultate = getFacultate(numeFacultate);
         List<Candidat> candidati = facultate.getCandidati();
 
