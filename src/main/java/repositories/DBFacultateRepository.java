@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DBFacultateRepository implements FacultateRepository{
 
-    private final PrintCSV printer = new PrintCSV();
+    private final PrintCSV printer = PrintCSV.getInstance();
 
     @Override
     public List<Facultate> loadFacultati() {
@@ -102,7 +102,7 @@ public class DBFacultateRepository implements FacultateRepository{
         String sql = "SELECT * FROM facultati WHERE   nume = ?";
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
-                PreparedStatement statement = con.prepareStatement(sql);
+                PreparedStatement statement = con.prepareStatement(sql)
         ) {
             statement.setString(1, numeFacultate);
 

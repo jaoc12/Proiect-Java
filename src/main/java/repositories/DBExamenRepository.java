@@ -16,7 +16,7 @@ import java.util.TreeSet;
 
 public class DBExamenRepository implements ExamenRepository{
 
-    private final PrintCSV printer = new PrintCSV();
+    private final PrintCSV printer = PrintCSV.getInstance();
 
     @Override
     public List<Examen> loadExamene() {
@@ -32,8 +32,8 @@ public class DBExamenRepository implements ExamenRepository{
             ResultSet set = statement.executeQuery();
 
             while (set.next()) {
-                Double pondere1 = set.getDouble("pondere1");
-                Double pondere2 = set.getDouble("pondere2");
+                double pondere1 = set.getDouble("pondere1");
+                double pondere2 = set.getDouble("pondere2");
                 String facultate = set.getString("facultate");
 
                 lista.add(new Examen(pondere1, pondere2, facultate));
@@ -107,7 +107,7 @@ public class DBExamenRepository implements ExamenRepository{
         String sql = "SELECT * FROM examene WHERE   facultate = ?";
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
-                PreparedStatement statement = con.prepareStatement(sql);
+                PreparedStatement statement = con.prepareStatement(sql)
         ) {
             statement.setString(1, numeFacultate);
 

@@ -15,7 +15,7 @@ import java.util.List;
 public class FileExamenRepository implements ExamenRepository{
 
     private final String file = "date/Examene.csv";
-    private final PrintCSV printer = new PrintCSV();
+    private final PrintCSV printer = PrintCSV.getInstance();
 
     public List<Examen> loadExamene(){
         printer.printAudit("loadExamene");

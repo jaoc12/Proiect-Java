@@ -16,10 +16,21 @@ import java.util.SortedSet;
 
 public class PrintCSV {
 
-    public void printAdmitere(String numeFisier, List<Candidat> lista){
+    private static PrintCSV single_instance = null;
+
+    private PrintCSV(){}
+
+    public static PrintCSV getInstance(){
+        if(single_instance == null){
+            single_instance = new PrintCSV();
+        }
+        return single_instance;
+    }
+
+    public void printAdmitere(String numeFisier, List<Candidat> lista, String numeFacultate){
 
         try {
-            FileWriter writer = new FileWriter("date/" + numeFisier + ".csv");
+            FileWriter writer = new FileWriter("date/" + numeFisier + " " + numeFacultate + ".csv");
             writer.append("Nume,Prenume,Medie");
             writer.append("\n");
 

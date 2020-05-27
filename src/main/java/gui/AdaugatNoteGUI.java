@@ -20,6 +20,7 @@ public class AdaugatNoteGUI extends JFrame{
     private JPanel panelNota2;
     private JTextField nota2;
     private JButton adaugaNotaButton;
+    private JButton inapoiButton;
 
     public AdaugatNoteGUI(String numeFacultate){
         add(panel);
@@ -27,7 +28,13 @@ public class AdaugatNoteGUI extends JFrame{
         list1.setModel(getLista(numeFacultate));
         pack();
         adaugaNotaButton.addActionListener(event -> adaugaNota(numeFacultate));
+        inapoiButton.addActionListener(event -> inapoi(numeFacultate));
         setVisible(true);
+    }
+
+    private void inapoi(String numeFacultate) {
+        new ProfesorGUI(numeFacultate);
+        dispose();
     }
 
     private void adaugaNota(String numeFacultate) {

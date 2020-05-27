@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DBCandidatRepository implements CandidatRepository{
 
-    private final PrintCSV printer = new PrintCSV();
+    private final PrintCSV printer = PrintCSV.getInstance();
 
     @Override
     public List<Candidat> loadCandidati(String numeFacultate) {
@@ -116,7 +116,7 @@ public class DBCandidatRepository implements CandidatRepository{
         String sql = "SELECT * FROM candidati where email = ? and facultate = ? and password = ?";
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
-                PreparedStatement statement = con.prepareStatement(sql);
+                PreparedStatement statement = con.prepareStatement(sql)
         ) {
             statement.setString(1, email);
             statement.setString(2, numeFacultate);

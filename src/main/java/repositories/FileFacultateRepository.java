@@ -14,7 +14,7 @@ import java.util.List;
 
 public class FileFacultateRepository implements FacultateRepository{
     private final String file = "date/Facultati.csv";
-    private final PrintCSV printer = new PrintCSV();
+    private final PrintCSV printer = PrintCSV.getInstance();
 
     @Override
     public List<Facultate> loadFacultati() {

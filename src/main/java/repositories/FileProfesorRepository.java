@@ -16,7 +16,7 @@ import java.util.TreeSet;
 public class FileProfesorRepository implements ProfesorRepository{
 
     private final String file = "date/Profesori.csv";
-    PrintCSV printer = new PrintCSV();
+    PrintCSV printer = PrintCSV.getInstance();
 
     public SortedSet<Profesor> loadProfesori(String nume){
         printer.printAudit("loadProfesori");

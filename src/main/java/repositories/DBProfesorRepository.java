@@ -12,7 +12,7 @@ import java.util.TreeSet;
 
 public class DBProfesorRepository implements ProfesorRepository{
 
-    private final PrintCSV printer = new PrintCSV();
+    private final PrintCSV printer = PrintCSV.getInstance();
 
     @Override
     public SortedSet<Profesor> loadProfesori(String numeFacultate) {
@@ -109,7 +109,7 @@ public class DBProfesorRepository implements ProfesorRepository{
         String sql = "SELECT * FROM profesori where email = ? and facultate = ? and password = ?";
         try (
                 Connection con = DBConnectionManager.getInstance().createConnection();
-                PreparedStatement statement = con.prepareStatement(sql);
+                PreparedStatement statement = con.prepareStatement(sql)
         ) {
             statement.setString(1, email);
             statement.setString(2, numeFacultate);

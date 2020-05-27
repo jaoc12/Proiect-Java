@@ -12,7 +12,7 @@ import java.util.List;
 public class FileCandidatRepository implements CandidatRepository{
 
     private final String file = "date/Candidati.csv";
-    private final PrintCSV printer = new PrintCSV();
+    private final PrintCSV printer = PrintCSV.getInstance();
 
     public List<Candidat> loadCandidati(String numeFacultate){
         printer.printAudit("loadCandidati");

@@ -53,11 +53,11 @@ public class AdmitereService {
         List<Candidat> respinsi = candidati.subList(facultate.getLocuriBuget() + facultate.getLocuriTaxa(),
                 candidati.size());
 
-        PrintCSV csv = new PrintCSV();
+        PrintCSV csv = PrintCSV.getInstance();
 
-        csv.printAdmitere("Admisi Buget", admisiBuget);
-        csv.printAdmitere("Admisi Taxa", admisiTaxa);
-        csv.printAdmitere("Respinsi", respinsi);
+        csv.printAdmitere("Admisi Buget", admisiBuget, numeFacultate);
+        csv.printAdmitere("Admisi Taxa", admisiTaxa, numeFacultate);
+        csv.printAdmitere("Respinsi", respinsi, numeFacultate);
     }
 
 }
