@@ -1,5 +1,6 @@
 package repositories;
 
+import managers.DBConnectionManager;
 import model.Candidat;
 import model.Examen;
 import model.Facultate;

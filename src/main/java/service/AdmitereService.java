@@ -27,7 +27,7 @@ public class AdmitereService {
     public List<Candidat> getListaSpecifica(String numeFacultate, String listaCautata){
         List<Candidat> candidati = getLista(numeFacultate);
         Facultate facultate = getFacultate(numeFacultate);
-        List<Candidat> lista = null;
+        List<Candidat> lista;
         if(listaCautata.equals("Buget")) {
             lista = candidati.subList(0, facultate.getLocuriBuget());
         }

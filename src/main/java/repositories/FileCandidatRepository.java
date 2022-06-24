@@ -84,6 +84,7 @@ public class FileCandidatRepository implements CandidatRepository{
             if (c.getEmail().equals(email)){
                 c.setNota1(nota1);
                 c.setNota2(nota2);
+                c.setMedie((nota1 + nota2) / 2);
                 break;
             }
             i++;

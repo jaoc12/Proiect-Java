@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 public class DBConnectionManager {
 
+    private DBConnectionManager() {};
+
     public Connection createConnection() {
         try {
             String url = "jdbc:mysql://localhost/pao?useUnicode=true&useJDBCCompliantTimezoneShift=true&" +

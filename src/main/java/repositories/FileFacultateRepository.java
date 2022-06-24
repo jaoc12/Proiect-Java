@@ -98,7 +98,6 @@ public class FileFacultateRepository implements FacultateRepository{
     public Facultate findFacultate(String numeFacultate) {
         printer.printAudit("findFacultate");
         List<Facultate> listaFacultate = loadFacultati();
-        int i = 0;
         for (Facultate facultate : listaFacultate) {
             if (facultate.getNume().equals(numeFacultate)) {
                 return facultate;

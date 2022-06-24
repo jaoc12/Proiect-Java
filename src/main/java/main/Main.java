@@ -1,7 +1,6 @@
 package main;
 
 import gui.LoginGUI;
-import gui.ProfesorGUI;
 
 public class Main {
 

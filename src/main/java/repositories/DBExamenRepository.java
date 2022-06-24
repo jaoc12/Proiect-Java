@@ -1,9 +1,7 @@
 package repositories;
 
 import managers.DBConnectionManager;
-import model.Candidat;
 import model.Examen;
-import model.Profesor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class DBExamenRepository implements ExamenRepository{
 

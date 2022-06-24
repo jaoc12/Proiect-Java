@@ -1,9 +1,7 @@
 package service;
 
 import model.Examen;
-import model.Facultate;
 import repositories.ExamenRepository;
-import repositories.FacultateRepository;
 
 public class ExamenService {
     private final ExamenRepository examenRepository;

@@ -2,7 +2,7 @@ package model;
 
 import repositories.CandidatRepository;
 import repositories.ExamenRepository;
-import repositories.FileCandidatRepository;
+
 import java.util.List;
 
 public class Facultate {
